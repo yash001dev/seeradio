@@ -27,3 +27,7 @@
   content: "*";
   color: red;
 }
+
+.separate__label {
+  background-color: #f2f3f4;
+}
