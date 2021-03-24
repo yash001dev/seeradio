@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+// people using the keyboard for navigation or screen readers will still be able to use this app.
 
-function App() {
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import Header from "./components/Header/Header.index";
+import LoginScreen from './screen/Signin/login.index';
+
+
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path="/" component={LoginScreen} />
+        <Route exact path="/header" component={Header} />
+      </Switch>
+    </Router>
   );
 }
 
-export default App;
