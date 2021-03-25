@@ -53,11 +53,15 @@ const AdvertiserForm = (props) => {
                   Industry Category
                 </Label>
                 <Input
-                  type="text"
+                  type="select"
                   name="industryCategory"
                   id="industryCategory"
                   placeholder="Industry Category"
-                />
+                >
+                  <option value="" selected disabled>
+                    Select...
+                  </option>
+                </Input>
               </FormGroup>
             </Col>
           </Row>
@@ -128,6 +132,14 @@ const AdvertiserForm = (props) => {
             </Col>
           </Row>
 
+            <FormGroup className="form-group separate__label  " check>
+            <Input type="checkbox" name="check" id="exampleCheck" />
+            <Label className="control-label" for="exampleCheck" check>
+              Secondary Contact(Billing-Optional)
+            </Label>
+          </FormGroup>
+
+
           <Row form>
             <Col className="separate__label" md={12}>
               <Label>Business Address</Label>
@@ -178,7 +190,11 @@ const AdvertiserForm = (props) => {
                 <Label className="control-label" for="country">
                   Country
                 </Label>
-                <Input type="text" name="country" id="exampleState" />
+                <Input type="select" name="country" id="exampleState">
+                  <option value="" selected disabled>
+                    Select...
+                  </option>
+                </Input>
               </FormGroup>
             </Col>
           </Row>
@@ -189,7 +205,11 @@ const AdvertiserForm = (props) => {
                 <Label className="control-label" for="state">
                   State/Province
                 </Label>
-                <Input type="text" name="state" id="state" />
+                <Input disabled type="select" name="state" id="state">
+                  <option value="" selected disabled>
+                    Select...
+                  </option>
+                </Input>
               </FormGroup>
             </Col>
 
@@ -203,13 +223,21 @@ const AdvertiserForm = (props) => {
             </Col>
           </Row>
 
-          <FormGroup className="form-group required" check>
+          <FormGroup className="form-group separate__label  " check>
             <Input type="checkbox" name="check" id="exampleCheck" />
             <Label className="control-label" for="exampleCheck" check>
-              Check me out
+              Billing Address(Optional)
             </Label>
           </FormGroup>
-          <Button>Sign in</Button>
+
+          <div style={{ display: "flex", justifyContent: "flex-end", marginBottom:'2%' }}>
+            <Button style={{width:'15%',borderBottom:'double'}} outline color="secondary">
+              Cancel
+            </Button>
+            <Button style={{ marginLeft: "5px",borderBottom:'double' }} color="primary">
+              Create Advertiser
+            </Button>
+          </div>
         </Form>
       </Container>
     </div>
