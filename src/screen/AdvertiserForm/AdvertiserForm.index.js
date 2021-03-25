@@ -11,6 +11,7 @@ import {
   Col,
 } from "reactstrap";
 import "./AdvertiserForm.styles.css";
+import {AiFillForward} from "react-icons/ai";
 const AdvertiserForm = (props) => {
   return (
     <div className="main">
@@ -235,7 +236,7 @@ const AdvertiserForm = (props) => {
               Cancel
             </Button>
             <Button style={{ marginLeft: "5px",borderBottom:'double' }} color="primary">
-              Create Advertiser
+              Create Advertiser<span><AiFillForward/></span>
             </Button>
           </div>
         </Form>

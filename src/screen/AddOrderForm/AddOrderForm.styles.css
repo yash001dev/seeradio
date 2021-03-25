@@ -1,0 +1,35 @@
+.parent__container {
+  background-color: #f2f3f4;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  overflow: scroll;
+}
+
+.main__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 2%;
+  background-color: #f2f2f2;
+}
+
+.main__container__title {
+  align-self: start;
+  color: #00bfff;
+}
+
+.main__container__form {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+}
+
+.main__container__maingroup {
+  display: flex;
+  justify-content: space-between;
+}
+/* .separate__label {
+  background-color: red !important;
+} */

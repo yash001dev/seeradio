@@ -2,9 +2,9 @@ import React from "react";
 import { Label, Input, FormGroup, Row, Col } from "reactstrap";
 import "./DropDown.styles.css";
 
-function DropDown() {
+function DropDown(props) {
   return (
-    <Row form>
+    
       <Col md={props.grid}>
         <FormGroup
           className={props.required ? "form-group required" : "form-group"}
@@ -24,7 +24,7 @@ function DropDown() {
           </Input>
         </FormGroup>
       </Col>
-    </Row>
+   
   );
 }
 

@@ -1,3 +1,5 @@
 .separate__label {
   background-color: #f2f3f4;
+  display: flex;
+  align-items: center;
 }

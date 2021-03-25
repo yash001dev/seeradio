@@ -4,7 +4,7 @@ import './Input.styles.css';
 
 function InputField(props) {
   return (
-    <Row form>
+    
       <Col md={props.grid}>
         <FormGroup className={props.required?'form-group required':'form-group'}>
           <Label className="control-label" for={props.name}>
@@ -18,7 +18,7 @@ function InputField(props) {
           />
         </FormGroup>
       </Col>
-    </Row>
+    
   );
 }
 

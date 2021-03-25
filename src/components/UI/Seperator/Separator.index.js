@@ -1,15 +1,11 @@
 import React from 'react'
 import './Separator.styles.css';
-import { Label,Input,FormGroup,} from 'reactstrap';
-function Separator() {
+import { Label,Col} from 'reactstrap';
+function Separator(props) {
     return (
-         <FormGroup className="form-group separate__label  " check>
-            <Input type="checkbox" name="check" id="exampleCheck" />
-            <Label className="control-label" for="exampleCheck" check>
-              {props.label}
-            </Label>
-         </FormGroup>
-
+         <Col className="separate__label" md={12}>
+              <Label>{props.label}</Label>
+          </Col>
     )
 }
 

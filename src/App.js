@@ -10,6 +10,7 @@ import {
 import Header from "./components/Header/Header.index";
 import LoginScreen from './screen/Signin/login.index';
 import AdvertiserForm from './screen/AdvertiserForm/AdvertiserForm.index';
+import AddOrderForm from "./screen/AddOrderForm/AddOrderForm.index";
 
 
 
@@ -18,7 +19,7 @@ export default function App() {
     <Router>
       <Switch>
         <Route exact path="/" component={LoginScreen} />
-        <Route exact path="/header" component={AdvertiserForm } />
+        <Route exact path="/header" component={AddOrderForm } />
       </Switch>
     </Router>
   );
