@@ -12,7 +12,7 @@ function DropDown(props) {
           <Label className="control-label" for={props.name}>
             {props.label}
           </Label>
-          <Input type="select" name={props.name} id={props.name}>
+          <Input disabled={props.disabled} type="select" name={props.name} id={props.name}>
             <option value="" selected disabled>
               {props.placeholder}
             </option>

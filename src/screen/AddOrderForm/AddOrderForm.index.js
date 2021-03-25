@@ -1,11 +1,11 @@
 import React from "react";
-import { Container, Row,Col } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
 import InputField from "../../components/UI/Input/Input.index";
 import "./AddOrderForm.styles.css";
 import DropDown from "./../../components/UI/DropDown/DropDown.index";
-import Separator from './../../components/UI/Seperator/Separator.index';
-import {AiFillBackward, AiFillForward} from 'react-icons/ai';
+import Separator from "./../../components/UI/Seperator/Separator.index";
+import { AiFillBackward, AiFillForward } from "react-icons/ai";
 function AddOrderForm() {
   return (
     <div className="parent__container">
@@ -13,9 +13,8 @@ function AddOrderForm() {
         <h5 className="main__container__title">Add New Orders</h5>
         <Container className="main__container__form">
           <Form className="main__form">
-
             <Row form>
-                <Separator label="Order"/>
+              <Separator label="Order" />
             </Row>
 
             <Row form>
@@ -25,6 +24,7 @@ function AddOrderForm() {
                 name="advertiser"
                 label="Advertiser"
                 placeholder="Test Bacancy"
+                disabled={true}
               />
 
               <InputField
@@ -69,9 +69,8 @@ function AddOrderForm() {
             </Row>
 
             <Row form>
-                <Separator label="Distribution"/>
+              <Separator label="Distribution" />
             </Row>
-
 
             <Row form>
               <DropDown
@@ -80,6 +79,7 @@ function AddOrderForm() {
                 name="targetmarket"
                 label="Target Market"
                 placeholder="Calgary"
+                disabled={true}
               />
               <InputField
                 required
@@ -93,14 +93,42 @@ function AddOrderForm() {
 
             <div className="main__container__maingroup">
               <div className="main__container__btngroup1">
-                <Button style={{borderBottom:'double',marginBottom:'4%',width:'150px' }} color="primary"><AiFillBackward />Back</Button>{' '}
+                <Button
+                  style={{
+                    borderBottom: "double",
+                    marginBottom: "4%",
+                    width: "150px",
+                  }}
+                  color="primary"
+                >
+                  <AiFillBackward />
+                  Back
+                </Button>{" "}
               </div>
               <div className="main__container__btngroup2">
-                <Button style={{borderBottom:'double',marginBottom:'4%',width:'150px'}} color="secondary">Cancel</Button>{' '}
-                 <Button style={{borderBottom:'double',marginBottom:'4%',width:'150px'}} color="primary">Create Order<AiFillForward /></Button>{' '}
+                <Button
+                  style={{
+                    borderBottom: "double",
+                    marginBottom: "4%",
+                    width: "150px",
+                  }}
+                  color="secondary"
+                >
+                  Cancel
+                </Button>{" "}
+                <Button
+                  style={{
+                    borderBottom: "double",
+                    marginBottom: "4%",
+                    width: "150px",
+                  }}
+                  color="primary"
+                >
+                  Create Order
+                  <AiFillForward />
+                </Button>{" "}
               </div>
             </div>
-            
           </Form>
         </Container>
       </Container>
