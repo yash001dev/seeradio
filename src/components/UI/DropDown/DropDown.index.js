@@ -1,0 +1,31 @@
+import React from "react";
+import { Label, Input, FormGroup, Row, Col } from "reactstrap";
+import "./DropDown.styles.css";
+
+function DropDown() {
+  return (
+    <Row form>
+      <Col md={props.grid}>
+        <FormGroup
+          className={props.required ? "form-group required" : "form-group"}
+        >
+          <Label className="control-label" for={props.name}>
+            {props.label}
+          </Label>
+          <Input type="select" name={props.name} id={props.name}>
+            <option value="" selected disabled>
+              {props.placeholder}
+            </option>
+            {props.options
+              ? props.options.map((option) => {
+                  return <option>{option}</option>;
+                })
+              : null}
+          </Input>
+        </FormGroup>
+      </Col>
+    </Row>
+  );
+}
+
+export default DropDown;
