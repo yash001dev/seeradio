@@ -38,13 +38,17 @@ const AdvertiserForm = (props) => {
   const [billing,setBilling]=useState(false);
   const [secondary,setSecondary]=useState(false);
   
+  function formSubmitHandle(e){
+      e.preventDefault();
+      props.forward();
+  }
 
   return (
     <div className="parent__container">
       <Container className="main__container">
         <h5 className="main__container__title">Add New Advertiser</h5>
         <Container className="main__container__form">
-          <Form className="main__form">
+          <Form className="main__form" onSubmit={formSubmitHandle}>
             <Row form>
               <InputField
                 required
@@ -283,7 +287,7 @@ const AdvertiserForm = (props) => {
 
           
             <div className="button__group">
-              <Button style={{margin:'2%',borderBottom:"double",}} color="secondary">Cancel</Button>
+              <Button type="submit" onClick={props.forward} style={{margin:'2%',borderBottom:"double",}} color="secondary">Cancel</Button>
               <Button style={{ margin:'2%',borderBottom:"double"}} color="primary">Create Advertiser<AiFillForward/></Button>
             </div>
         

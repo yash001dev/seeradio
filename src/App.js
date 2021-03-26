@@ -11,6 +11,7 @@ import Header from "./components/Header/Header.index";
 import LoginScreen from './screen/Signin/login.index';
 import AdvertiserForm from './screen/AdvertiserForm/AdvertiserForm.index';
 import AddOrderForm from "./screen/AddOrderForm/AddOrderForm.index";
+import Advertiser from './screen/Advertiser/Advertiser.index';
 
 
 
@@ -21,6 +22,7 @@ export default function App() {
         <Route exact path="/" component={LoginScreen} />
         <Route path="/header" component={AddOrderForm } />
         <Route path="/assets" component={AdvertiserForm} />
+        <Route path="/advertiser" component={Advertiser} />
       </Switch>
     </Router>
   );
