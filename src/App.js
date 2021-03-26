@@ -19,7 +19,8 @@ export default function App() {
     <Router>
       <Switch>
         <Route exact path="/" component={LoginScreen} />
-        <Route exact path="/header" component={AddOrderForm } />
+        <Route path="/header" component={AddOrderForm } />
+        <Route path="/assets" component={AdvertiserForm} />
       </Switch>
     </Router>
   );

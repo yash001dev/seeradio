@@ -30,6 +30,10 @@
   display: flex;
   justify-content: space-between;
 }
+.main__form {
+  width: 90%;
+  margin-top: 15px;
+}
 
 /* .separate__label {
   background-color: red !important;
