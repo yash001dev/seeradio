@@ -50,7 +50,7 @@ function AddOrderForm() {
               <InputField
                 required
                 grid={6}
-                name="Price"
+                name="price"
                 label="Price"
                 placeholder="Price"
                 type="text"

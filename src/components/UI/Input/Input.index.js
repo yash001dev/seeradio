@@ -1,5 +1,5 @@
 import React from "react";
-import { Label,Input,FormGroup,Row,Col } from 'reactstrap';
+import { Label,Input,FormGroup,Row,Col,FormFeedback } from 'reactstrap';
 import './Input.styles.css';
 
 function InputField(props) {
@@ -15,7 +15,10 @@ function InputField(props) {
             name={props.name}
             id={props.name}
             placeholder={props.placeholder}
+            invalid={props.invalid}
+            onChange={props.onChange}
           />
+          <FormFeedback>{props.helper}</FormFeedback>
         </FormGroup>
       </Col>
     

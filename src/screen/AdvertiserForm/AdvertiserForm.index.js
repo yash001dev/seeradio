@@ -16,6 +16,8 @@ import Separator from "../../components/UI/Seperator/Separator.index";
 import InputField from "../../components/UI/Input/Input.index";
 import DropDown from "../../components/UI/DropDown/DropDown.index";
 import InputFields from "./../../constant/form.constant";
+import useAdvertiser from './useAdvertiser';
+import AdvertiserValidate from './Advertiser.validate';
 
 const AdvertiserForm = (props) => {
   const {
@@ -34,6 +36,8 @@ const AdvertiserForm = (props) => {
     Postal,
   } = InputFields;
 
+  const customData=useAdvertiser(AdvertiserValidate,props.forward)
+  
 
   const [billing,setBilling]=useState(false);
   const [secondary,setSecondary]=useState(false);
@@ -43,12 +47,14 @@ const AdvertiserForm = (props) => {
       props.forward();
   }
 
+  
+
   return (
     <div className="parent__container">
       <Container className="main__container">
         <h5 className="main__container__title">Add New Advertiser</h5>
         <Container className="main__container__form">
-          <Form className="main__form" onSubmit={formSubmitHandle}>
+          <Form className="main__form" onSubmit={customData.handleSubmit}>
             <Row form>
               <InputField
                 required
@@ -57,6 +63,10 @@ const AdvertiserForm = (props) => {
                 label={CompanyName.label}
                 placeholder={CompanyName.placeholder}
                 type="text"
+                invalid={customData.errors.companyname && true}
+                helper={customData.errors.companyname && customData.errors.companyname}
+                onChange={customData.handleChange}
+                value={customData.values.companyname}
               />
 
               <InputField
@@ -66,6 +76,10 @@ const AdvertiserForm = (props) => {
                 label={CompanyWeb.label}
                 placeholder={CompanyWeb.placeholder}
                 type="text"
+                invalid={customData.errors.companywebsiteaddress &&  true}
+                helper={customData.errors.companywebsiteaddress && customData.errors.companyName}
+                onChange={customData.handleChange}
+                value={customData.values.companywebsiteaddress}
               />
             </Row>
 
@@ -77,6 +91,9 @@ const AdvertiserForm = (props) => {
                 label={IndustryCategory.label}
                 placeholder={IndustryCategory.placeholder}
                 disabled={IndustryCategory.disabled}
+                // invalid={customData.errors.industrycategory && true}
+                // helper={customData.errors.industrycategory && customData.errors.industrycategory}
+                onChange={customData.handleChange}
               />
             </Row>
 
@@ -92,6 +109,10 @@ const AdvertiserForm = (props) => {
                 label={FirstName.label}
                 placeholder={FirstName.placeholder}
                 type="text"
+                invalid={customData.errors.firstname && true}
+                helper={customData.errors.firstname && customData.errors.firstname}
+                onChange={customData.handleChange}
+                value={customData.values.firstname}
               />
               <InputField
                 required
@@ -100,6 +121,10 @@ const AdvertiserForm = (props) => {
                 label={LastName.label}
                 placeholder={LastName.placeholder}
                 type="text"
+                invalid={customData.errors.lastname && true}
+                helper={customData.errors.lastname && customData.errors.lastname}
+                onChange={customData.handleChange}
+                value={customData.values.lastname}
               />
             </Row>
 
@@ -111,6 +136,10 @@ const AdvertiserForm = (props) => {
                 label={Email.label}
                 placeholder={Email.placeholder}
                 type="text"
+                invalid={customData.errors.email && true}
+                helper={customData.errors.email && customData.errors.email}
+                onChange={customData.handleChange}
+                value={customData.values.email}
               />
               <InputField
                 required
@@ -119,6 +148,10 @@ const AdvertiserForm = (props) => {
                 label={Phone.label}
                 placeholder={Phone.placeholder}
                 type="text"
+                invalid={customData.errors.phone && true}
+                helper={customData.errors.phone && customData.errors.phone}
+                onChange={customData.handleChange}
+                value={customData.values.phone}
               />
             </Row>
 
@@ -133,12 +166,14 @@ const AdvertiserForm = (props) => {
           {secondary?(<>
               <Row form>
               <InputField
-                
                 grid={FirstName.grid}
-                name={FirstName.name}
+                name="firstname2"
                 label={FirstName.label}
                 placeholder={FirstName.placeholder}
                 type="text"
+                onChange={customData.handleChange}
+                value={customData.values.firstname2}
+                
               />
               <InputField
                 
@@ -147,25 +182,31 @@ const AdvertiserForm = (props) => {
                 label={LastName.label}
                 placeholder={LastName.placeholder}
                 type="text"
+                onChange={customData.handleChange}
+                value={customData.values.lastname2}         
               />
             </Row>
 
             <Row form>
               <InputField
-                
                 grid={Email.grid}
                 name={Email.name}
                 label={Email.label}
                 placeholder={Email.placeholder}
                 type="text"
+
+                onChange={customData.handleChange}
+                value={customData.values.email2}
               />
               <InputField
-                
                 grid={Phone.grid}
                 name={Phone.name}
                 label={Phone.label}
                 placeholder={Phone.placeholder}
                 type="text"
+               
+                onChange={customData.handleChange}
+                value={customData.values.phone2}
               />
             </Row>
 
@@ -183,6 +224,10 @@ const AdvertiserForm = (props) => {
                 label={Address.label}
                 placeholder={Address.placeholder}
                 type="text"
+                invalid={customData.errors.address && true}
+                helper={customData.errors.address && customData.errors.address}
+                onChange={customData.handleChange}
+                value={customData.values.address}
               />
               <InputField
                 required
@@ -191,6 +236,11 @@ const AdvertiserForm = (props) => {
                 label={Address2.label}
                 placeholder={Address2.placeholder}
                 type="text"
+                invalid={customData.errors.address2 && true}
+                helper={customData.errors.address2 && customData.errors.address2}
+                onChange={customData.handleChange}
+                // value={customData.values.address2}
+                value={customData.values.address2}
               />
             </Row>
 
@@ -202,6 +252,10 @@ const AdvertiserForm = (props) => {
                 label={City.label}
                 placeholder={City.placeholder}
                 type="text"
+                invalid={customData.errors.city && true}
+                helper={customData.errors.city && customData.errors.city}
+                onChange={customData.handleChange}
+                value={customData.values.city}
               />
               <InputField
                 required
@@ -209,9 +263,21 @@ const AdvertiserForm = (props) => {
                 name={Country.name}
                 label={Country.label}
                 placeholder={Country.placeholder}
+                type="text"
+                invalid={customData.errors.country && true}
+                helper={customData.errors.country && customData.errors.country}
+                onChange={customData.handleChange}
+                value={customData.values.country}
               />
             </Row>
 
+
+              <FormGroup className="form-group separate__label  " check>
+            <Input onChange={()=>setBilling(!billing)} type="checkbox" name="check" id="exampleCheck" />
+            <Label className="control-label" for="exampleCheck" check>
+              Billing Address(Optional)
+            </Label>
+          </FormGroup>
 
             {billing?(<>
             <Row form>
@@ -220,12 +286,13 @@ const AdvertiserForm = (props) => {
 
             <Row form>
               <InputField
-                
                 grid={Address.grid}
                 name={Address.name}
                 label={Address.label}
                 placeholder={Address.placeholder}
                 type="text"
+                onChange={customData.handleChange}
+                value={customData.values.address1_2}
               />
               <InputField
                 
@@ -234,17 +301,20 @@ const AdvertiserForm = (props) => {
                 label={Address2.label}
                 placeholder={Address2.placeholder}
                 type="text"
+                 onChange={customData.handleChange}
+                value={customData.values.address2_2}
               />
             </Row>
 
             <Row form>
               <InputField
-                
                 grid={City.grid}
                 name={City.name}
                 label={City.label}
                 placeholder={City.placeholder}
                 type="text"
+                onChange={customData.handleChange}
+                value={customData.values.city2}
               />
               <InputField
                 
@@ -252,17 +322,14 @@ const AdvertiserForm = (props) => {
                 name={Country.name}
                 label={Country.label}
                 placeholder={Country.placeholder}
+                 onChange={customData.handleChange}
+                value={customData.values.country2}
               />
             </Row>
               
             </>):null}
 
-            <FormGroup className="form-group separate__label  " check>
-            <Input onChange={()=>setBilling(!billing)} type="checkbox" name="check" id="exampleCheck" />
-            <Label className="control-label" for="exampleCheck" check>
-              Billing Address(Optional)
-            </Label>
-          </FormGroup>
+            
 
             <Row form>
               <DropDown
@@ -272,6 +339,7 @@ const AdvertiserForm = (props) => {
                 label={State.label}
                 placeholder={State.placeholder}
                 disabled={State.disabled}
+
               />
 
               <InputField
@@ -281,6 +349,10 @@ const AdvertiserForm = (props) => {
                 label={Postal.label}
                 placeholder={Postal.placeholder}
                 type="text"
+                invalid={customData.errors.postal && true}
+                helper={customData.errors.postal && customData.errors.postal}
+                onChange={customData.handleChange}
+                value={customData.values.postal}
               />
             </Row>
 
