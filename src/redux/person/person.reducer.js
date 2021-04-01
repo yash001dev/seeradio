@@ -17,7 +17,8 @@ const personReducer=(state=INITIAL_STATE,action)=>{
         case UserActionTypes.SIGN_IN_SUCCESS:
             return{
                 ...state,
-                person:action.payload
+                person:action.payload,
+                loading:false,
             }
         case UserActionTypes.SIGN_IN_FAILURE:
             return{

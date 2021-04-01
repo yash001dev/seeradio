@@ -1,4 +1,21 @@
-export const serverCall = ({ url, request, method }) => {
+import { store } from "./redux/store";
+
+export const serverCall = ({ url, request, method,header }) => {
+
+  let token;
+  if(header===true){
+    token=store.getState().person.person.token
+  }
+
+  const config={
+    headers:{
+      "Content-type":"application/json"
+    }
+  }
+  if(token){
+    config.headers['x-auth-token']=token;
+  }
+
   return new Promise((success, failure) => {
     let axios = require("axios");
 
@@ -18,6 +35,7 @@ export const serverCall = ({ url, request, method }) => {
       params: method === "get" ? request : null,
       url: url,
       timeout: 1000 * 5,
+      headers:config
     })
       .then((response) => {
         success(response);
