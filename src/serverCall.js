@@ -8,12 +8,11 @@ export const serverCall = ({ url, request, method,header }) => {
   }
 
   const config={
-    headers:{
       "Content-type":"application/json"
-    }
+    
   }
   if(token){
-    config.headers['x-auth-token']=token;
+    config["x-token"]=token;
   }
 
   return new Promise((success, failure) => {
@@ -28,7 +27,7 @@ export const serverCall = ({ url, request, method,header }) => {
     });
 
     console.log("FORMDATA:",request);
-
+    console.log("CONFIG:",config);
     axios({
       method: method,
       data: method === "post" ? request : null,

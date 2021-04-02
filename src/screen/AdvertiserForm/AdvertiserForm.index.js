@@ -18,6 +18,9 @@ import DropDown from "../../components/UI/DropDown/DropDown.index";
 import InputFields from "./../../constant/form.constant";
 import useAdvertiser from './useAdvertiser';
 import AdvertiserValidate from './Advertiser.validate';
+import Layout from "../../components/Layout/Layout.index";
+import { connect } from "react-redux";
+import { getIndustries } from "../../redux/wholsale/wholsale.actions";
 
 const AdvertiserForm = (props) => {
   const {
@@ -36,7 +39,7 @@ const AdvertiserForm = (props) => {
     Postal,
   } = InputFields;
 
-  const customData=useAdvertiser(AdvertiserValidate,props.forward)
+  const customData=useAdvertiser(AdvertiserValidate,props.forward,props.getIndustries)
   
 
   const [billing,setBilling]=useState(false);
@@ -50,6 +53,7 @@ const AdvertiserForm = (props) => {
   
 
   return (
+    
     <div className="parent__container">
       <Container className="main__container">
         <h5 className="main__container__title">Add New Advertiser</h5>
@@ -369,7 +373,8 @@ const AdvertiserForm = (props) => {
         </Container>
       </Container>
     </div>
+    
   );
 };
 
-export default AdvertiserForm;
+export default connect(null,{getIndustries})(AdvertiserForm);

@@ -6,7 +6,7 @@ export const loginUser=(request)=>(dispatch)=>{
     returnToDispatch(dispatch,UserActionTypes.SIGN_IN_START);
     const url = LOGIN_URL;
     console.log("REQUEST:",request);
-    serverCall({url:url,request:request,method:'post'})
+    serverCall({url:url,request:request,method:'post',header:false})
     .then((response)=>{
         returnToDispatch(dispatch,UserActionTypes.SIGN_IN_SUCCESS,response.data.data);
     })

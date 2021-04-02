@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const useAdvertiser = (validateInfo, forward) => {
+const useAdvertiser = (validateInfo, forward,getIndustries) => {
   const [values, setValue] = useState({
     companyname: "",
     companywebsiteaddress: "",
@@ -75,7 +75,14 @@ const useAdvertiser = (validateInfo, forward) => {
     }
   }, [values]);
 
+  useEffect(()=>{
+    getIndustries();
+  },[])
+
   return { handleSubmit, handleChange, errors, values };
 };
+
+
+
 
 export default useAdvertiser;
