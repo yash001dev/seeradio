@@ -4,8 +4,10 @@ import { useState } from 'react';
 import AdvertiserForm from '../AdvertiserForm/AdvertiserForm.index';
 import AddOrderForm from './../AddOrderForm/AddOrderForm.index';
 import {StepperReducer,initialState} from './stepper.reducer';
+import Layout from './../../components/Layout/Layout.index';
 
 function Advertiser() {
+    
 
     function functionForwaredStepper(e){
         console.log("sds");
@@ -19,6 +21,7 @@ function Advertiser() {
 
     const [state,dispatch]=useReducer(StepperReducer,initialState);
     return (
+        <Layout>
         <div>
              <Stepper steps={ [{title: 'Step One'}, {title: 'Step Two',href: 'www.google.com'}, {title: 'Step Three'}, {title: 'Step Four'}] } activeStep={ state.step} />
             {console.log("STATE:",state.step)}
@@ -28,6 +31,7 @@ function Advertiser() {
 
 
         </div>
+        </Layout>
     )
 }
 

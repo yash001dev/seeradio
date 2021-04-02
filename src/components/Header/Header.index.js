@@ -1,37 +1,65 @@
-import React from "react";
-import { Navbar, Nav, Container,NavDropdown } from "react-bootstrap";
-import { NavLink, Link } from "react-router-dom";
+import React, { useState } from 'react';
+import './Header.styles.css';
+import NavigationTop from '../NavigationTop/NavigationTop.index';
+import { NavLink } from 'react-router-dom';
+import { Collapse, Navbar, NavbarToggler, Nav, NavItem, DropdownItem, DropdownMenu, UncontrolledDropdown, DropdownToggle } from 'reactstrap';
 
-function Header() {
-  return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-      <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
-      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-      <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav className="mr-auto">
-          <Nav.Link href="#features">Features</Nav.Link>
-          <Nav.Link href="#pricing">Pricing</Nav.Link>
-          <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
-            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.2">
-              Another action
-            </NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="#action/3.4">
-              Separated link
-            </NavDropdown.Item>
-          </NavDropdown>
-        </Nav>
-        <Nav>
-          <Nav.Link href="#deets">More deets</Nav.Link>
-          <Nav.Link eventKey={2} href="#memes">
-            Dank memes
-          </Nav.Link>
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
-  );
+const Header = (props) => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggle = () => setIsOpen(!isOpen);
+    return (
+        <div>
+            <NavigationTop />
+
+            {/* <ul className="nav nav-tabs bg-primary">
+                <li>
+                <NavigationItem link='/dashboard'>Dashboard</NavigationItem></li>
+                <li> <NavigationItem link='/campaigns'>Campaigns</NavigationItem></li>
+                <li> <NavigationItem link='/advertiser'>Advertiser</NavigationItem></li>
+                <div style={{ position: 'absolute', top: '0%', right: '0%' }}>
+                <li>  <NavigationItem link='/order'>+Order</NavigationItem></li>
+                </div>
+            </ul> */}
+
+            <div>
+                <Navbar className="bottomNavigationbar" light expand="md">
+                    <NavbarToggler onClick={toggle} />
+                    <Collapse isOpen={isOpen} navbar>
+                        <Nav className='mr-auto' navbar>
+                            <NavItem>
+                                <NavLink className='nav-link' activeClassName='active' to="/dashboard"><i className="fa fa-tachometer"></i>Dashboard</NavLink>
+                            </NavItem>
+                            <UncontrolledDropdown nav inNavbar>
+                                <DropdownToggle nav caret>
+                                    <i className="fa fa-fire"></i>Campaigns
+                                </DropdownToggle>
+                                <DropdownMenu>
+                                    <DropdownItem>
+                                        Videos In Production
+                                    </DropdownItem>
+                                    <DropdownItem>
+                                        Campaigns In Market
+                                    </DropdownItem>
+                                    <DropdownItem>
+                                        Completed Campaigns
+                                    </DropdownItem>
+                                </DropdownMenu>
+                            </UncontrolledDropdown>
+
+                            <NavItem>
+                                <NavLink className='nav-link' activeClassName='active' to="/advertiser"><i className="fa fa-user"></i>Advertiser</NavLink>
+                            </NavItem>
+                            <NavItem className="orderNavItem">
+                                <NavLink className='nav-link' activeClassName='active' to="/order"><i className="fa fa-plus"></i>Order</NavLink>
+                            </NavItem>
+                        </Nav >
+                    </Collapse>
+                </Navbar>
+            </div>
+
+        </div>
+    )
 }
 
 export default Header;

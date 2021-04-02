@@ -18,7 +18,7 @@ import AddAsset from './screen/AddAssets/AddAssets.index';
 
 export default function App() {
   return (
-    <Router>
+   
       <Switch>
         <Route exact path="/" component={LoginScreen} />
         <Route path="/header" component={AddOrderForm } />
@@ -26,7 +26,7 @@ export default function App() {
         <Route path="/advertiser" component={Advertiser} />
         <Route path="/test" component={AddAsset} />
       </Switch>
-    </Router>
+   
   );
 }
 
