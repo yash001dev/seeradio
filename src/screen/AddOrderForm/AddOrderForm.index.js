@@ -1,6 +1,6 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
-import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
+import { Container, Row,} from "react-bootstrap";
+import { Button, Form, } from "reactstrap";
 import InputField from "../../components/UI/Input/Input.index";
 import "./AddOrderForm.styles.css";
 import DropDown from "./../../components/UI/DropDown/DropDown.index";
