@@ -1,5 +1,5 @@
 import React from "react";
-import { Label,Input,FormGroup,Row,Col,FormFeedback } from 'reactstrap';
+import { Label,Input,FormGroup,Col,FormFeedback } from 'reactstrap';
 import './Input.styles.css';
 
 function InputField(props) {

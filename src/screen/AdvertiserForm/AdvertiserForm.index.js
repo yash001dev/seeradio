@@ -6,9 +6,7 @@ import {
   FormGroup,
   Label,
   Input,
-  FormText,
   Row,
-  Col,
 } from "reactstrap";
 import "./AdvertiserForm.styles.css";
 import { AiFillForward } from "react-icons/ai";
@@ -18,9 +16,9 @@ import DropDown from "../../components/UI/DropDown/DropDown.index";
 import InputFields from "./../../constant/form.constant";
 import useAdvertiser from './useAdvertiser';
 import AdvertiserValidate from './Advertiser.validate';
-import Layout from "../../components/Layout/Layout.index";
 import { connect } from "react-redux";
-import { getIndustries } from "../../redux/wholsale/wholsale.actions";
+import { addClient, getIndustries } from "../../redux/wholsale/wholsale.actions";
+import { getCountry, getState } from './../../redux/public/public.actions';
 
 const AdvertiserForm = (props) => {
   const {
@@ -39,16 +37,16 @@ const AdvertiserForm = (props) => {
     Postal,
   } = InputFields;
 
-  const customData=useAdvertiser(AdvertiserValidate,props.forward,props.getIndustries)
+  const customData=useAdvertiser(AdvertiserValidate,props.forward,props.getIndustries,props.getCountry,props.getState,props.personId,props.addClient)
   
 
   const [billing,setBilling]=useState(false);
   const [secondary,setSecondary]=useState(false);
   
-  function formSubmitHandle(e){
-      e.preventDefault();
-      props.forward();
-  }
+  // function formSubmitHandle(e){
+  //     e.preventDefault();
+  //     props.forward();
+  // }
 
   
 
@@ -95,6 +93,7 @@ const AdvertiserForm = (props) => {
                 label={IndustryCategory.label}
                 placeholder={IndustryCategory.placeholder}
                 disabled={IndustryCategory.disabled}
+                options={props.industry?props.industry:null}
                 // invalid={customData.errors.industrycategory && true}
                 // helper={customData.errors.industrycategory && customData.errors.industrycategory}
                 onChange={customData.handleChange}
@@ -261,17 +260,19 @@ const AdvertiserForm = (props) => {
                 onChange={customData.handleChange}
                 value={customData.values.city}
               />
-              <InputField
+             
+              <DropDown
                 required
                 grid={Country.grid}
                 name={Country.name}
+                value={true}
                 label={Country.label}
                 placeholder={Country.placeholder}
-                type="text"
-                invalid={customData.errors.country && true}
-                helper={customData.errors.country && customData.errors.country}
+                disabled={Country.disabled}
+                options={props.country?props.country:null}
+                // invalid={customData.errors.industrycategory && true}
+                // helper={customData.errors.industrycategory && customData.errors.industrycategory}
                 onChange={customData.handleChange}
-                value={customData.values.country}
               />
             </Row>
 
@@ -320,14 +321,17 @@ const AdvertiserForm = (props) => {
                 onChange={customData.handleChange}
                 value={customData.values.city2}
               />
-              <InputField
-                
+              <DropDown
                 grid={Country.grid}
-                name={Country.name}
+                name={'country2'}
                 label={Country.label}
+                value={Country.code}
                 placeholder={Country.placeholder}
-                 onChange={customData.handleChange}
-                value={customData.values.country2}
+                disabled={Country.disabled}
+                options={props.country?props.country:null}
+                // invalid={customData.errors.industrycategory && true}
+                // helper={customData.errors.industrycategory && customData.errors.industrycategory}
+                onChange={customData.handleChange}
               />
             </Row>
               
@@ -337,12 +341,17 @@ const AdvertiserForm = (props) => {
 
             <Row form>
               <DropDown
-                required
                 grid={State.grid}
                 name={State.name}
                 label={State.label}
+                value={true}
                 placeholder={State.placeholder}
-                disabled={State.disabled}
+                
+                options={props.state?props.state:null}
+                // invalid={customData.errors.industrycategory && true}
+                // helper={customData.errors.industrycategory && customData.errors.industrycategory}
+                onChange={customData.handleChange}
+                
 
               />
 
@@ -376,5 +385,12 @@ const AdvertiserForm = (props) => {
     
   );
 };
-
-export default connect(null,{getIndustries})(AdvertiserForm);
+const mapStateToProps = (state) =>{
+  return{
+    industry:state.wholesale.industry,
+    country:state.public.country,
+    state:state.public.state,
+    personId:state.person.person.personData.id
+  }
+}
+export default connect(mapStateToProps,{getIndustries,getCountry,getState,addClient})(AdvertiserForm);

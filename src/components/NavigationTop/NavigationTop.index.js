@@ -20,7 +20,7 @@ function NavigationTop(props) {
                     <img alt='"bell' src={bell} className='bellSvg' />
                 </div>
                 <div className='butoonDropDown'>
-                    <Button className='circleButton'>{"props.firstName[0]" + "props.lastName[0]"}</Button>
+                    <Button className='circleButton'>{"props.firstName[0] props.lastName[0]"}</Button>
 
                     <Dropdown isOpen={dropdownOpen} toggle={toggle}>
                         <DropdownToggle

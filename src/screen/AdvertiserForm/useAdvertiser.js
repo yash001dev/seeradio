@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
+import { getCountry } from "../../redux/public/public.actions";
 
-const useAdvertiser = (validateInfo, forward,getIndustries) => {
+const useAdvertiser = (validateInfo, forward, getIndustries,getCountry, getState,personId,addClient) => {
   const [values, setValue] = useState({
     companyname: "",
     companywebsiteaddress: "",
@@ -10,6 +11,7 @@ const useAdvertiser = (validateInfo, forward,getIndustries) => {
     email: "",
     phone: "",
     address: "",
+    country: "",
     address2: "",
     city: "",
     state: "",
@@ -26,7 +28,7 @@ const useAdvertiser = (validateInfo, forward,getIndustries) => {
 
   const [errors, setErrors] = useState({});
 
-  const [btnClick,setBtnClick] =useState(false);
+  const [btnClick, setBtnClick] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
@@ -55,19 +57,101 @@ const useAdvertiser = (validateInfo, forward,getIndustries) => {
     forward();
   }
 
+  // const prepareSubmit = () => {
+  //   setPrepareValue({
+  //     ...prepareValue,
+  //     companyName: values.companyname,
+  //     companyWebsite: values.companywebsiteaddress,
+  //     companyType: "Client",
+  //     contactAddress: {
+  //       business: {
+  //         address: values.address,
+  //         address2: values.address2,
+  //         city: values.city,
+  //         postal: values.postal,
+  //         country: values.country,
+  //         state: values.state,
+  //         provinceID: 2,
+  //       },
+  //       billing: {
+  //         address: values.address1_2,
+  //         address2: values.address2_2,
+  //         city: values.city2,
+  //         state: values.state,
+  //         postal: values.postal,
+  //         country2: values.country2,
+  //         provinceID: 2,
+  //       },
+  //       useSame: false,
+  //     },
+  //     addressType: "Billing",
+  //     firstName: values.firstName,
+  //     lastName: values.lastName,
+  //     email: values.email,
+  //     phone: values.phone,
+  //     secondaryContact: {
+  //       firstName: values.firstname2,
+  //       lastName: values.lastname2,
+  //       email: values.email2,
+  //       phone: values.phone2,
+  //     },
+  //     roleCode: "CLIENT",
+  //     createdByPerson: "",
+  //   });
+  // };
+
   useEffect(() => {
-    if(btnClick){
+    if (btnClick) {
       console.log("btnClick called");
       console.log(errors);
-      if (Object.keys(errors).length === 0 && isSubmitting ) {
+      if (Object.keys(errors).length === 0 && isSubmitting) {
         console.log("dsds");
+        addClient({
+          companyName: values.companyname,
+          industryID:'047b2594-d399-4cf9-97cc-b985bd530339',
+          companyWebsite: values.companywebsiteaddress,
+          companyType: "Client",
+          contactAddress: {
+            business: {
+              address: values.address,
+              address2: values.address2,
+              city: values.city,
+              postal: values.postal,
+              country: values.country,
+              state: values.state,
+              provinceID: 2,
+            },
+            billing: {
+              address: values.address1_2,
+              address2: values.address2_2,
+              city: values.city2,
+              state: values.state,
+              postal: values.postal,
+              country2: values.country2,
+              provinceID: 2,
+            },
+            useSame: false,
+          },
+          addressType: "Billing",
+          firstName: values.firstname,
+          lastName: values.lastname,
+          email: values.email,
+          phone: values.phone,
+          secondaryContact: {
+            firstName: values.firstname2,
+            lastName: values.lastname2,
+            email: values.email2,
+            phone: values.phone2,
+          },
+          roleCode: "CLIENT",
+          createdByPerson: personId,
+        });
+
         formSubmitHandle();
       }
       setBtnClick(false);
     }
-    
-
-  }, [errors,btnClick]);
+  }, [errors, btnClick]);
 
   useEffect(() => {
     if (isSubmitting) {
@@ -75,14 +159,18 @@ const useAdvertiser = (validateInfo, forward,getIndustries) => {
     }
   }, [values]);
 
-  useEffect(()=>{
+  useEffect(() => {
     getIndustries();
-  },[])
+    getCountry();
+  }, []);
+
+  useEffect(() =>{
+    if(values.country){
+      getState(values.country)
+    }
+  },[values.country])
 
   return { handleSubmit, handleChange, errors, values };
 };
-
-
-
 
 export default useAdvertiser;

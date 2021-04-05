@@ -41,7 +41,7 @@ export const serverCall = ({ url, request, method,header }) => {
       })
       .catch((error) => {
         if (error.response) {
-          failure(error.response.data.message);
+          failure(error.errorMessage);
         }
         // else{
         //     failure(
