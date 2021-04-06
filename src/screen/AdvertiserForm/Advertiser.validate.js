@@ -1,6 +1,6 @@
-export default function AdvertiserValidate(values){
+export default function AdvertiserValidate(values,billing){
     let errors ={}
-
+    console.log("BILLING:",billing)
     if(!values.companyname){
         errors.companyname ='Company Name is required';
     }
@@ -49,6 +49,32 @@ export default function AdvertiserValidate(values){
         errors.country="Country is Required"
     }
 
+    if(!values.postal){
+        errors.postal="Postal is Required"
+    }
+
+    if(billing){
+        console.log("Billing:",billing)
+        if(!values.address1_2){
+            errors.address1_2="Address is Required"
+         }
+
+        if(!values.address2_2){
+            errors.address2_2="Address is Required"
+        }
+
+        if(!values.city2){
+            errors.city2="City is Required"
+        }
+
+        if(!values.country2){
+            errors.country2="Country is Required"
+        }
+
+        if(!values.postal2){
+            errors.postal2="Postal is Required"
+        }
+    }
     // if(!values.state){
     //     errors.state="State is Required"
     // }
