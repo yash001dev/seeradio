@@ -41,7 +41,7 @@ const AdvertiserForm = (props) => {
     props.getState,
     props.personId,
     props.addClient,
-    billing
+    billing?true:false
   );
 
   const [secondary, setSecondary] = useState(false);
@@ -383,7 +383,7 @@ const AdvertiserForm = (props) => {
                   <DropDown
                     required
                     grid={Country.grid}
-                    name={"country2"}
+                    name="country2"
                     label={Country.label}
                     value={true}
                     placeholder={Country.placeholder}
@@ -407,7 +407,7 @@ const AdvertiserForm = (props) => {
                     label={State.label}
                     value={true}
                     placeholder={State.placeholder}
-                    options={props.state ? props.state : null}
+                    options={props.state2 ? props.state2 : null}
                     // invalid={customData.errors.industrycategory && true}
                     // helper={customData.errors.industrycategory && customData.errors.industrycategory}
                     onChange={customData.handleChange}
@@ -464,6 +464,7 @@ const mapStateToProps = (state) => {
     country: state.public.country,
     state: state.public.state,
     personId: state.person.person.personData.id,
+    state2:state.public.state2,
   };
 };
 export default connect(mapStateToProps, {

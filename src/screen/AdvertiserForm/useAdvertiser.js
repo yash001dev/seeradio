@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { getCountry } from "../../redux/public/public.actions";
 
-const useAdvertiser = (validateInfo, forward, getIndustries,getCountry, getState,personId,addClient,billing) => {
+const useAdvertiser = (validateInfo, forward, getIndustries,getCountry, getState,personId,addClient,billingState) => {
  
- 
+  console.log("BILLING STATE:",billingState);
  
   const [values, setValue] = useState({
     companyname: "",
@@ -46,14 +46,14 @@ const useAdvertiser = (validateInfo, forward, getIndustries,getCountry, getState
     });
 
     if (isSubmitting) {
-      setErrors(validateInfo(values,billing));
+      setErrors(validateInfo(values,billingState));
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(values);
-    setErrors(validateInfo(values),billing);
+    setErrors(validateInfo(values,billingState));
     setIsSubmitting(true);
     setBtnClick(true);
   };
@@ -133,6 +133,13 @@ const useAdvertiser = (validateInfo, forward, getIndustries,getCountry, getState
       getState(values.country)
     }
   },[values.country])
+  
+  useEffect(()=>{
+    console.log("COUNTRY2:",values.country2);
+    if(values.country2){
+      getState(values.country2,{second:true})
+    }
+  },[values.country2])
 
   return { handleSubmit, handleChange, errors, values };
 };

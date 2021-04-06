@@ -5,6 +5,7 @@ const INITIAL_STATE={
     loading:false,
     error:false,
     state:[],
+    state2:[],
 };
 
 const publicReducer=(state=INITIAL_STATE,action)=>{
@@ -28,7 +29,7 @@ const publicReducer=(state=INITIAL_STATE,action)=>{
                 error:{error:action.payload},
                 loading:false,
             }
-
+        case PublicTypes.GETSTATE2_START:
         case PublicTypes.GETSTATE_START:
             return{
                 ...state,
@@ -41,12 +42,22 @@ const publicReducer=(state=INITIAL_STATE,action)=>{
                 state:action.payload,
                 loading:false,
             }
+
+        case PublicTypes.GETSTATE2_SUCCESS:
+            return{
+                ...state,
+                state2:action.payload,
+                loading:false,
+            }
         
+        case PublicTypes.GETSTATE2_FAILURE:
         case PublicTypes.GETSTATE_FAILURE:
             return{
                 ...state,
                 error:{error:action.payload},
             }
+        
+        
 
         default:return state;
     }
