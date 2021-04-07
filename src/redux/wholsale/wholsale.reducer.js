@@ -5,10 +5,12 @@ const INITIAL_STATE={
     error:{},
     loading:false,
     clientInsertData:[],
+    clientData:[],
 };
 
 const wholesaleReducer=(state=INITIAL_STATE,action)=>{
     switch(action.type){
+        case WholeSalesTypes.GETALL_CLIENT_START:
         case WholeSalesTypes.GETINDUSTRIES_START:
             return{
                 ...state,
@@ -21,6 +23,15 @@ const wholesaleReducer=(state=INITIAL_STATE,action)=>{
                 industry:action.payload,
                 loading:false,
             }
+
+        case WholeSalesTypes.GETALL_CLIENT_SUCCESS:
+            return{
+                ...state,
+                clientData:action.payload,
+                loading:false,
+            }
+        
+        case WholeSalesTypes.GETALL_CLIENT_FAILURE:
         case WholeSalesTypes.GETINDUSTRIES_FAILURE:
             return{
                 ...state,

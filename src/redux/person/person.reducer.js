@@ -3,6 +3,7 @@ import UserActionTypes from "./person.types";
 const INITIAL_STATE={
     person:[],
     error:{},
+    isLogged:false,
     loading:false,
 };
 
@@ -18,12 +19,14 @@ const personReducer=(state=INITIAL_STATE,action)=>{
             return{
                 ...state,
                 person:action.payload,
+                isLogged:true,
                 loading:false,
             }
         case UserActionTypes.SIGN_IN_FAILURE:
             return{
                 ...state,
-                error:{error:action.payload}
+                error:{error:action.payload},
+                isLogged:false,
             }
         default:return state;
     }
