@@ -1,4 +1,4 @@
-import { store } from "./redux/store";
+import  store  from "./redux/store";
 
 export const serverCall = ({ url, request, method,header }) => {
 
@@ -41,7 +41,7 @@ export const serverCall = ({ url, request, method,header }) => {
       })
       .catch((error) => {
         if (error) {
-          failure(error.errorMessage);
+          failure(error);
         }
         // else{
         //     failure(

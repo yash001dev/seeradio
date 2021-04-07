@@ -56,6 +56,7 @@ const useAdvertiser = (validateInfo, forward, getIndustries,getCountry, getState
     setErrors(validateInfo(values,billingState));
     setIsSubmitting(true);
     setBtnClick(true);
+   
   };
 
   function formSubmitHandle() {

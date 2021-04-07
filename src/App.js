@@ -5,6 +5,7 @@ import {
   
   Switch,
   Route,
+  Redirect,
   
 } from "react-router-dom";
 
@@ -13,20 +14,38 @@ import AdvertiserForm from './screen/AdvertiserForm/AdvertiserForm.index';
 import AddOrderForm from "./screen/AddOrderForm/AddOrderForm.index";
 import Advertiser from './screen/Advertiser/Advertiser.index';
 import AddAsset from './screen/AddAssets/AddAssets.index';
+import Dashboard from './screen/Dashboard/Dashboard.index';
+import { connect } from "react-redux";
 
+function App(props) {
 
+  const checkStatus=(component)=>{
+    if(props.userStatus){
+      return component
+    }
+    else{
+      return (<Redirect to="/" />)
+    }
+  }
 
-export default function App() {
   return (
    
       <Switch>
         <Route exact path="/" component={LoginScreen} />
+        <Route path="/dashboard" render={()=>checkStatus(<Dashboard />)} />
         <Route path="/header" component={AddOrderForm } />
         <Route path="/assets" component={AdvertiserForm} />
-        <Route path="/advertiser" component={Advertiser} />
+        <Route path="/advertiser" render={()=>checkStatus(<Advertiser />)} />
         <Route path="/test" component={AddAsset} />
       </Switch>
    
   );
 }
 
+const mapStateToProps = (state)=>{
+  return{
+    userStatus:state.person.isLogged
+  }
+}
+
+export default connect(mapStateToProps)(App);

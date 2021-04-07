@@ -9,11 +9,6 @@ import publicReducer from './public/public.reducer';
 
 
 
-const persistConfig ={
-    key:'user',
-    storage,
-    whitelist:['person']
-}
 
 
 const rootReducer=combineReducers({
@@ -22,5 +17,5 @@ const rootReducer=combineReducers({
     public:publicReducer
 })
 
-export default persistReducer(persistConfig,rootReducer);
+export default rootReducer;
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect} from "react";
 import { Container, Button, Row, Col, Label } from "reactstrap";
 import Input from "./../../components/UI/Input/Input.index";
 import { Form, FormGroup } from "react-bootstrap";
@@ -14,9 +14,18 @@ function LoginScreen(props) {
 
   function formSubmit(e){
     e.preventDefault();
+   
     props.loginUser({email:formValue.email,password:formValue.password});
+    
     console.log("Form Submit...");
   }
+
+  useEffect(() => {
+    
+    if(props.loginStatus){
+     props.history.push('/dashboard');
+     }
+  },[props.loginStatus])
 
   function handleChange(e){
     let name=e.target.name
@@ -83,6 +92,12 @@ function LoginScreen(props) {
   );
 }
 
-export default connect(null,{
+const mapStateToProps = (state) =>{
+  return{
+    loginStatus: state.person.isLogged
+}
+}
+
+export default connect(mapStateToProps,{
   loginUser
 })(LoginScreen);

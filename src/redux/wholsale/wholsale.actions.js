@@ -37,6 +37,25 @@ export const addClient=(request)=>(dispatch)=>{
 };
 
 
+export const getAllClient=(request)=>(dispatch)=>{
+    returnToDispatch(dispatch,WholeSalesTypes.GETALL_CLIENT_START);
+    const url = CLIENT_INSERT;
+    console.log("REQUEST:",request);
+    serverCall({url:url,request:request,method:'get',header:true})
+    .then((response)=>{
+        returnToDispatch(dispatch,WholeSalesTypes.GETALL_CLIENT_SUCCESS,response.data.data);
+    })
+    .catch((error)=>{
+        returnToDispatch(dispatch,WholeSalesTypes.GETALL_CLIENT_FAILURE,error);
+        setTimeout(()=>{
+            alert(error);
+        },100)
+    });
+};
+
+
+
+
 const returnToDispatch=(dispatch,type,payload)=>{
     dispatch({type: type, payload: payload});
 }
