@@ -1,4 +1,4 @@
-import {GETINDUSTRIES_URL,CLIENT_INSERT} from '../../constant/apit.constant';
+import {GETINDUSTRIES_URL,CLIENT_INSERT,TARGET_MARKET,INSERT_CAMPAIGN} from '../../constant/apit.constant';
 import { serverCall } from './../../serverCall';
 import WholeSalesTypes from './wholsale.types';
 
@@ -37,16 +37,49 @@ export const addClient=(request)=>(dispatch)=>{
 };
 
 
-export const getAllClient=(request)=>(dispatch)=>{
+export const getAllClient=()=>(dispatch)=>{
     returnToDispatch(dispatch,WholeSalesTypes.GETALL_CLIENT_START);
     const url = CLIENT_INSERT;
-    console.log("REQUEST:",request);
-    serverCall({url:url,request:request,method:'get',header:true})
+    
+    serverCall({url:url,request:'',method:'get',header:true})
     .then((response)=>{
         returnToDispatch(dispatch,WholeSalesTypes.GETALL_CLIENT_SUCCESS,response.data.data);
     })
     .catch((error)=>{
         returnToDispatch(dispatch,WholeSalesTypes.GETALL_CLIENT_FAILURE,error);
+        setTimeout(()=>{
+            alert(error);
+        },100)
+    });
+};
+
+export const getAllMarket=()=>(dispatch)=>{
+    returnToDispatch(dispatch,WholeSalesTypes.GETALL_TARGETMARKET_START);
+    const url = TARGET_MARKET;
+    
+    serverCall({url:url,request:'',method:'get',header:true})
+    .then((response)=>{
+        returnToDispatch(dispatch,WholeSalesTypes.GETALL_TARGETMARKET_SUCCESS,response.data.data);
+    })
+    .catch((error)=>{
+        returnToDispatch(dispatch,WholeSalesTypes.GETALL_TARGETMARKET_FAILURE,error);
+        setTimeout(()=>{
+            alert(error);
+        },100)
+    });
+}
+
+
+export const addCampaign=(request)=>(dispatch)=>{
+    returnToDispatch(dispatch,WholeSalesTypes.INSERT_CAMPAIGN_START);
+    const url = INSERT_CAMPAIGN;
+    console.log("REQUEST:",request);
+    serverCall({url:url,request:request,method:'post',header:true})
+    .then((response)=>{
+        returnToDispatch(dispatch,WholeSalesTypes.INSERT_CAMPAIGN_SUCCESS,response.data.data);
+    })
+    .catch((error)=>{
+        returnToDispatch(dispatch,WholeSalesTypes.INSERT_CAMPAIGN_FAILURE,error);
         setTimeout(()=>{
             alert(error);
         },100)

@@ -6,12 +6,16 @@ const INITIAL_STATE={
     loading:false,
     clientInsertData:[],
     clientData:[],
+    marketer:[],
+    campaignResponse:[],
 };
 
 const wholesaleReducer=(state=INITIAL_STATE,action)=>{
     switch(action.type){
         case WholeSalesTypes.GETALL_CLIENT_START:
         case WholeSalesTypes.GETINDUSTRIES_START:
+        case WholeSalesTypes.GETALL_TARGETMARKET_START:
+        case WholeSalesTypes.INSERT_CAMPAIGN_START:
             return{
                 ...state,
                 loading:true,
@@ -30,9 +34,25 @@ const wholesaleReducer=(state=INITIAL_STATE,action)=>{
                 clientData:action.payload,
                 loading:false,
             }
+
+        case WholeSalesTypes.GETALL_TARGETMARKET_SUCCESS:
+            return{
+                ...state,
+                marketer:action.payload,
+                loading:false,
+            }
+
+        case WholeSalesTypes.INSERT_CAMPAIGN_SUCCESS:
+            return{
+                ...state,
+                campaignResponse:action.payload,
+                loading:false,
+            }
         
         case WholeSalesTypes.GETALL_CLIENT_FAILURE:
         case WholeSalesTypes.GETINDUSTRIES_FAILURE:
+        case WholeSalesTypes.GETALL_TARGETMARKET_FAILURE:
+        case WholeSalesTypes.INSERT_CAMPAIGN_FAILURE:
             return{
                 ...state,
                 error:{error:action.payload}

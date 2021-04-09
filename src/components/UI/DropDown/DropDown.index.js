@@ -3,9 +3,25 @@ import { Label, Input, FormGroup, Col } from "reactstrap";
 import "./DropDown.styles.css";
 
 function DropDown(props) {
-    
-  return (
+    const getPropsValue=(option)=>{
+      if(props.id){
+        return option.id
+      }
+      if(props.value){
+        return option.code
+      }
+      return null;
+    }
 
+    const getPropsName=(option)=>{
+      console.log("OPTION:",option);
+      if(props.rename){
+        console.log("RENAME:",props.rename);
+        return option.companyName
+      }
+      return option.name
+    }
+  return (
       <Col md={props.grid}>
         {console.log("PROPS:",props)}
         <FormGroup
@@ -20,7 +36,7 @@ function DropDown(props) {
             </option>
             {props.options
               ? props.options.map((option,index) => {
-                  return <option key={option.id} value={props.value?option.code:option.name}>{option.name}</option>;
+                  return <option key={option.id} value={getPropsValue(option)}>{getPropsName(option)}</option>;
                 })
               : null} 
           </Input>
