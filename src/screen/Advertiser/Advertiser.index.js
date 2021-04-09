@@ -23,12 +23,12 @@ function Advertiser() {
     return (
         <Layout>
         <div>
-             <Stepper steps={ [{title: 'Step One'}, {title: 'Step Two',href: 'www.google.com'}, {title: 'Step Three'}, {title: 'Step Four'}] } activeStep={ state.step} />
+             <Stepper steps={ [{title: 'Step One'}, {title: 'Step Two',href: 'www.google.com'}, {title: 'Step Three'},] } activeStep={ state.step} />
             {console.log("STATE:",state.step)}
             
             {state.step===0?<AdvertiserForm forward={functionForwaredStepper} backward={functionPreviousStepper}/>:null}
-            {state.step===1?<AddOrderForm/>:null}
-
+            {state.step===1?<AddOrderForm forward={functionForwaredStepper} backward={functionPreviousStepper}     />:null}
+            
 
         </div>
         </Layout>
