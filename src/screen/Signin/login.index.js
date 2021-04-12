@@ -1,103 +1,79 @@
-import React, { useState,useEffect} from "react";
-import { Container, Button, Row, Col, Label } from "reactstrap";
-import Input from "./../../components/UI/Input/Input.index";
-import { Form, FormGroup } from "react-bootstrap";
+import React, { useState } from "react";
+import FloatingInput from "../../components/UI/FloatingInput/FloatingInput.index";
 import "./login.styles.css";
-import logo from "../../assets/images/logo.png";
 import { connect } from "react-redux";
+import { withRouter } from "react-router";
+import logo from "../../assets/images/logo.png";
+import { Button } from "reactstrap";
+// import Spinner from '../../Shared/Spinner/Spinner';
+// import BackDrop from '../../Shared/Backdrop/Backdrop';
+// import { login } from '../../Api/Api';
+import LoginFields from "../../constant/login.constant";
+import useLogin from "./useLogin";
+import LoginValidation from "./Login.validate";
 import { loginUser } from "../../redux/person/person.actions";
 
-
-function LoginScreen(props) {
-  
-  const [formValue,setFormValue]=useState({email:'',password:'',})
-
-  function formSubmit(e){
-    e.preventDefault();
-   
-    props.loginUser({email:formValue.email,password:formValue.password});
-    
-    console.log("Form Submit...");
-  }
-
-  useEffect(() => {
-    
-    if(props.loginStatus){
-     props.history.push('/dashboard');
-     }
-  },[props.loginStatus])
-
-  function handleChange(e){
-    let name=e.target.name
-    console.log("NAME:",e.target.name,"VALUE:",e.target.value);
-    setFormValue({...formValue,[name]:e.target.value});
-  }
+const Login = (props) => {
+  const { email, password } = LoginFields;
+  const customData = useLogin(LoginValidation, props.loginUser, props.history,props.loginStatus);
 
   return (
-    <Container className="login__container">
-      <div>
-        {console.log("FORMVALUE:",formValue)}
-        <img
-          className="logo__image"
-          src={logo}
-          alt="Logo"
-          width="160"
-          height="60"
-        />
-        <div className="card login-form">
-          <div className="card-body">
-            <div className="card-text">
-              <Form className=".form" onSubmit={formSubmit}>
-                <FormGroup>
-                  <Label for="email">Email</Label>
-                  <input
-                    id="input__username"
-                    className="common"
-                    name="email"
-                    type="text"
-                    placeholder="Enter email"
-                    id="email"
-                    required="true"
-                    onChange={handleChange}
-                  />
-                </FormGroup>
-
-                <FormGroup>
-                  <Label for="email">Password</Label>
-                  <input
-                    id="input__username"
-                    className="common"
-                    name="password"
-                    type="password"
-                    placeholder="Enter password"
-                    id="email"
-                    required="true"
-                    onChange={handleChange}
-                  />
-                </FormGroup>
-
-                <button type="submit" class="btn btn-primary btn-block">
-                  Sign in
-                </button>
-
-                <a className="forget__link" href="#">
-                  Forget Password?
-                </a>
-              </Form>
+    <>
+      {/* <BackDrop show={isLoading} ><Spinner/></BackDrop> */}
+      <div className="background">
+        <div className="loginBox w-100 mx-auto">
+          <div className="imageBox">
+            <img alt="Logo" src={logo} />
+          </div>
+          <div className="formBox">
+            <form onSubmit={customData.handleSubmit}>
+              <FloatingInput
+                classes="border-top-0 border-left-0 border-right-0 border-bottom rounded-0"
+                onChange={customData.handleChange}
+                value={customData.values.email}
+                type="email"
+                name="email"
+                label="Email"
+                placeholder="Enter email"
+                id="emailfloatingInput"
+                for="floatingInput"
+              />
+              <FloatingInput
+                classes="border-top-0 border-left-0 border-right-0 rounded-0"
+                autoComplete="cc-csc"
+                onChange={customData.handleChange}
+                value={customData.values.password} 
+                type="password"
+                name="password"
+                label="Password"
+                placeholder="Enter password"
+                id="passwordfloatingInput"
+                for="floatingInput"
+              />
+              <Button
+                color="primary"
+                type="submit"
+                className="loginButton"
+              >
+                Login
+              </Button>
+            </form>
+            <div className="text-center">
+              <Button color="link" className="forgotPasswordButton">
+                Forgot password?
+              </Button>
             </div>
           </div>
         </div>
       </div>
-    </Container>
+    </>
   );
-}
+};
 
-const mapStateToProps = (state) =>{
+const mapStateToProps = (state)=>{
   return{
-    loginStatus: state.person.isLogged
-}
+    loginStatus:state.person.isLogged
+  }
 }
 
-export default connect(mapStateToProps,{
-  loginUser
-})(LoginScreen);
+export default connect(mapStateToProps, {loginUser})(Login);

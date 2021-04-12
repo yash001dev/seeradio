@@ -46,13 +46,16 @@ const Header = (props) => {
                                     </DropdownItem>
                                 </DropdownMenu>
                             </UncontrolledDropdown>
-
+                            
                             <NavItem>
                                 <NavLink className='nav-link' activeClassName='active' to="/advertiser"><i className="fa fa-user"></i>Advertiser</NavLink>
                             </NavItem>
                             <NavItem className="orderNavItem">
                                 <NavLink className='nav-link' activeClassName='active' to="/order"><i className="fa fa-plus"></i>Order</NavLink>
                             </NavItem>
+                            {/* <NavItem className="orderNavItem">
+                                <NavLink className='nav-link' activeClassName='active' to="/resetpassword"><i className="fa fa-user"></i>Change Password</NavLink>
+                            </NavItem> */}
                         </Nav >
                     </Collapse>
                 </Navbar>

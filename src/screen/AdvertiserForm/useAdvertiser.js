@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { getCountry } from "../../redux/public/public.actions";
 
-const useAdvertiser = (validateInfo, forward, getIndustries,getCountry, getState,personId,addClient,billingState) => {
+const useAdvertiser = (validateInfo, forward, getIndustries,getCountry, getState,personId,addClient,stateError,billingState) => {
  
   console.log("BILLING STATE:",billingState);
  
@@ -63,6 +63,15 @@ const useAdvertiser = (validateInfo, forward, getIndustries,getCountry, getState
     forward();
   }
 
+  function cleanObject(obj){
+    for (var propName in obj) {
+      if (obj[propName] === null || obj[propName] === undefined || obj[propName]=='') {
+        delete obj[propName];
+      }
+    }
+  return obj
+  }
+
 
 
   useEffect(() => {
@@ -71,7 +80,7 @@ const useAdvertiser = (validateInfo, forward, getIndustries,getCountry, getState
       console.log(errors);
       if (Object.keys(errors).length === 0 && isSubmitting) {
         console.log("dsds");
-        addClient({
+        let addData={
           companyName: values.companyname,
           industryID:'047b2594-d399-4cf9-97cc-b985bd530339',
           companyWebsite: values.companywebsiteaddress,
@@ -95,7 +104,7 @@ const useAdvertiser = (validateInfo, forward, getIndustries,getCountry, getState
               country: values.country2,
               provinceID: 2,
             },
-            useSame: false,
+            useSame: !billingState,
           },
           addressType: "Billing",
           firstName: values.firstname,
@@ -110,9 +119,16 @@ const useAdvertiser = (validateInfo, forward, getIndustries,getCountry, getState
           },
           roleCode: "CLIENT",
           createdByPerson: personId,
-        });
-
+        }
+        addData=cleanObject(addData);
+        addClient(addData);
+        console.log("STATE ERROR:",stateError)
+        if(!stateError){
         formSubmitHandle();
+        }
+        else{
+          alert(stateError);
+        }
       }
       setBtnClick(false);
     }

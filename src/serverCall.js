@@ -33,7 +33,7 @@ export const serverCall = ({ url, request, method,header }) => {
       data: method === "post" ? request : null,
       params: method === "get" ? request : null,
       url: url,
-      timeout: 1000 * 5,
+      timeout: 1000 * 9,
       headers:config
     })
       .then((response) => {
