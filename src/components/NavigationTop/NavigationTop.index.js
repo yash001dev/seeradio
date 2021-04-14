@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
-import { Button, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import React, { useState } from 'react';
+import { Button, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, NavItem } from 'reactstrap';
 import logo from '../../assets/images/logo.png';
 import './NavigationTop.styles.css';
 import bell from '../../assets/images/bell.svg';
 import { connect } from 'react-redux';
-import {Link} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+
 
 function NavigationTop(props) {
     const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -15,13 +16,12 @@ function NavigationTop(props) {
             <div className="logoDiv">
                 <img alt="logo" className="logo-area" src={logo} />
             </div>
-            {console.log(props.firstName)}
             <div className='circleButtonDiv'>
                 <div>
                     <img alt='"bell' src={bell} className='bellSvg' />
                 </div>
                 <div className='butoonDropDown'>
-                    <Button className='circleButton'>{props.firstName+props.lastName}</Button>
+                    <Button className='circleButton'>{props.firstName[0] + props.lastName[0]}</Button>
 
                     <Dropdown isOpen={dropdownOpen} toggle={toggle}>
                         <DropdownToggle
@@ -32,9 +32,24 @@ function NavigationTop(props) {
                             <i class="fa fa-chevron-down" style={{ color: 'black' }} ></i>
                         </DropdownToggle>
                         <DropdownMenu>
-                            <DropdownItem tag={Link} to='/changePassword'>Profile</DropdownItem>
-                            <DropdownItem>Change Password</DropdownItem>
-                            <DropdownItem>SignOut</DropdownItem>
+                            <DropdownItem>
+                                <NavItem>
+                                    <NavLink className='nav-link' activeClassName='active' to="/profile">
+                                    <i class="fa fa-user mr-2" style={{color:'white'}}></i>Profile</NavLink>
+                                </NavItem> 
+                            </DropdownItem>
+                            <DropdownItem>
+                                <NavItem>
+                                    <NavLink className='nav-link' activeClassName='active' to="/changePassword">
+                                    <i class="fa fa-lock mr-2"></i>Change Password</NavLink>
+                                </NavItem> 
+                            </DropdownItem>
+                            <DropdownItem>
+                                <NavItem>
+                                    <NavLink className='nav-link' activeClassName='active' to='/signOut'>
+                                    <i class="fa fa-sign-out mr-2"></i>SignOut</NavLink>
+                                </NavItem> 
+                            </DropdownItem>
                         </DropdownMenu>
                     </Dropdown>
                 </div>
@@ -47,6 +62,8 @@ function NavigationTop(props) {
         </div>
     )
 }
+
+
 
 const mapStateToProps = (state) => {
     return {

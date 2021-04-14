@@ -6,7 +6,8 @@ import './dropzone.css';
 import { Link } from 'react-router-dom';
 // import { uploadFile, getPersonById } from '../../Api/Api';
 import { connect } from 'react-redux';
-import {serverCall} from './../../serverCall';
+import {serverCall} from '../../../serverCall';
+import { UPLOAD_CAMPAIGN } from '../../../constant/apit.constant';
 
 
 const style = {
@@ -46,16 +47,16 @@ const Dropzone = (props) => {
         acceptedFiles.forEach(file => {
             formData.append('file', file)
             setIsLoading(true)
-            serverCall
+            serverCall({url:UPLOAD_CAMPAIGN,request:formData,method:'post',headers:'true',formMethod:true})
             // uploadFile(formData)
-            //     .then(res => {
-            //         setIsLoading(false)
-            //         props.onChange(res.data, props.name)
-            //     })
-            //     .catch(err => {
-            //         setIsLoading(false)
-            //         alert(err)
-            //     })
+                .then(res => {
+                    setIsLoading(false)
+                    props.onChange(res.data, props.name)
+                })
+                .catch(err => {
+                    // setIsLoading(false)
+                    alert(err)
+                })
         })
     }
 

@@ -17,6 +17,7 @@ import AddAsset from './screen/AddAssets/AddAssets.index';
 import Dashboard from './screen/Dashboard/Dashboard.index';
 import { connect } from "react-redux";
 import ChangePassword from './screen/ChangePassword/changepassword.index';
+import VideosInProduction from './screen/VideosInProduction/videosInProduction.index';
 
 function App(props) {
 
@@ -39,6 +40,7 @@ function App(props) {
         <Route path="/advertiser" render={()=>checkStatus(<Advertiser />)} />
         <Route path="/resetPassword" render={()=>checkStatus(<ChangePassword />)}/>
         <Route path="/test" component={AddAsset} />
+        <Route path="/videoproduction" render={()=>checkStatus(<VideosInProduction />)} />
       </Switch>
    
   );
