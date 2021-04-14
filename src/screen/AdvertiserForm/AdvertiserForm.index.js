@@ -41,6 +41,7 @@ const AdvertiserForm = (props) => {
     props.getState,
     props.personId,
     props.addClient,
+    props.stateError,
     billing?true:false
   );
 
@@ -465,6 +466,7 @@ const mapStateToProps = (state) => {
     state: state.public.state,
     personId: state.person.person.personData.id,
     state2:state.public.state2,
+    stateError:state.public.errors,
   };
 };
 export default connect(mapStateToProps, {

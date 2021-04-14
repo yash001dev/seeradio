@@ -1,6 +1,6 @@
 import  store  from "./redux/store";
 
-export const serverCall = ({ url, request, method,header }) => {
+export const serverCall = ({ url, request, method,header,formMethod }) => {
 
   let token;
   if(header===true){
@@ -8,7 +8,7 @@ export const serverCall = ({ url, request, method,header }) => {
   }
 
   const config={
-      "Content-type":"application/json"
+      "Content-type":!formMethod?"application/json":"multipart/form-data"
     
   }
   if(token){
@@ -33,7 +33,6 @@ export const serverCall = ({ url, request, method,header }) => {
       data: method === "post" ? request : null,
       params: method === "get" ? request : null,
       url: url,
-      timeout: 1000 * 5,
       headers:config
     })
       .then((response) => {
