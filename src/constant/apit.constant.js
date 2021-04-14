@@ -8,6 +8,7 @@ export const CLIENT_INSERT=`${BASE_URL}api/company/client`;
 export const TARGET_MARKET=`${BASE_URL}api/wholesalepricing/getMarkets`;
 export const INSERT_CAMPAIGN=`${BASE_URL}api/campaign/`;
 export const PASSWORD_RESET_URL=`${BASE_URL}api/person/changePassword`;
+export const UPLOAD_CAMPAIGN=`${BASE_URL}api/campaign/upload`;
 
 
 
