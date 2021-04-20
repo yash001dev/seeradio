@@ -47,7 +47,7 @@ const Dropzone = (props) => {
         acceptedFiles.forEach(file => {
             formData.append('file', file)
             setIsLoading(true)
-            serverCall({url:UPLOAD_CAMPAIGN,request:formData,method:'post',headers:'true',formMethod:true})
+            serverCall({url:UPLOAD_CAMPAIGN,request:formData,method:'post',header:true,formMethod:true})
             // uploadFile(formData)
                 .then(res => {
                     setIsLoading(false)

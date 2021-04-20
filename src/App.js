@@ -18,6 +18,7 @@ import Dashboard from './screen/Dashboard/Dashboard.index';
 import { connect } from "react-redux";
 import ChangePassword from './screen/ChangePassword/changepassword.index';
 import VideosInProduction from './screen/VideosInProduction/videosInProduction.index';
+import CampaignDetail from './screen/CampaignDetail/CampaignDetail.index';
 
 function App(props) {
 
@@ -41,6 +42,7 @@ function App(props) {
         <Route path="/resetPassword" render={()=>checkStatus(<ChangePassword />)}/>
         <Route path="/test" component={AddAsset} />
         <Route path="/videoproduction" render={()=>checkStatus(<VideosInProduction />)} />
+        <Route path="/campaigndetail/:id" render={()=>checkStatus(<CampaignDetail/>)} />
       </Switch>
    
   );
