@@ -10,7 +10,11 @@ import { NavLink } from 'react-router-dom';
 function NavigationTop(props) {
     const [dropdownOpen, setDropdownOpen] = useState(false);
 
-    const toggle = () => setDropdownOpen(prevState => !prevState);
+    const toggle = () => {
+        console.log("Toggle is Called...");
+        setDropdownOpen(prevState => !prevState)
+        return;
+    };
     return (
         <div className='topNavigation'>
             <div className="logoDiv">
@@ -29,9 +33,9 @@ function NavigationTop(props) {
                             data-toggle="dropdown"
                             aria-expanded={dropdownOpen}
                         >
-                            <i class="fa fa-chevron-down" style={{ color: 'black' }} ></i>
+                            <i class="fa fa-chevron-down" style={{ color: 'black',height:'20px' }} ></i>
                         </DropdownToggle>
-                        <DropdownMenu>
+                        <DropdownMenu className='navTopDropdown'>
                             <DropdownItem>
                                 <NavItem>
                                     <NavLink className='nav-link' activeClassName='active' to="/profile">

@@ -49,13 +49,13 @@ const useOrder = (validateInfo, forward,getAllClient,getAllMarket,previousRespon
 
 
   useEffect(() => {
-    if (btnClick) {
+    async function DataInsert(){
+      if (btnClick) {
       console.log("btnClick called");
       console.log(errors);
       if (Object.keys(errors).length === 0 && isSubmitting) {
         console.log("dsds");
         console.log("previousResponse:",previousResponse);
-        formSubmitHandle();
         formHandle({
             clientCompanyID:values.advertiser,
             title: values.title,
@@ -71,10 +71,20 @@ const useOrder = (validateInfo, forward,getAllClient,getAllMarket,previousRespon
             statusByPersonID: previousResponse.person.createdByPerson,
             statusWithPersonID: previousResponse.salesOrgCompany.clientPersonID
 
-        })
+        });
+
+        setTimeout(() => {
+          formSubmitHandle();  
+        }, 7000);
+
+        
+        
       }
       setBtnClick(false);
     }
+    }
+
+    DataInsert();
   }, [errors, btnClick]);
 
   useEffect(() => {
